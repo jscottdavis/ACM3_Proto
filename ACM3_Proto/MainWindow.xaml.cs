@@ -21,6 +21,7 @@ namespace ACM3_Proto
     public partial class MainWindow : Window
     {
         BSDataSource myDataSource;
+        MSDataSource msDataSource;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,6 +29,9 @@ namespace ACM3_Proto
             myDataSource = new BSDataSource();
             this.DataContext = myDataSource;
             this.NetworkLayout1.Series[0].ItemsSource = myDataSource;
+
+            msDataSource = new MSDataSource();
+            this.NetworkLayout1.Series[1].ItemsSource = msDataSource;
         }
      }
 }

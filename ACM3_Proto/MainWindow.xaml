@@ -9,8 +9,8 @@
         Title="Spirent Advanced Channel Model Utility" Height="600" Width="1000">
 
     <Window.Resources>
-        <local:BSDataSource x:Key="MyData"></local:BSDataSource>
-        <local:MSDataSource x:Key="MSData"></local:MSDataSource>
+        <!--<local:BSDataSource x:Key="MyData"></local:BSDataSource>
+        <local:MSDataSource x:Key="MSData"></local:MSDataSource>-->
         <DataTemplate x:Key="HexagonMarkerTemplate">
 
             <Polygon Points="4 0 0.536 2 0.536 6 4 8 7.464 6 7.464 2" 
@@ -95,7 +95,7 @@
     <Grid>
         <!--The Main Grid has 3 columns-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>   <!--Parameters-->
+            <ColumnDefinition Width="250"/>   <!--Parameters-->
             <ColumnDefinition Width="*" />     <!--Network Layout-->
             <ColumnDefinition Width="200"/>    <!--Simulation Output-->
         </Grid.ColumnDefinitions>
@@ -115,7 +115,6 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
-                                <ColumnDefinition Width="75"/>
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -142,6 +141,7 @@
                                 <Label Content="1"/>
                                 <Label Content="2"/>
                                 <Label Content="3"/>
+                                <Label Content="4"/>
                             </ComboBox>
 
                             <Label Content="Name:" Grid.Column="0" Grid.Row="1"></Label>
@@ -149,27 +149,21 @@
                             <Label Content="" Grid.Column="0" Grid.Row="2"></Label>
 
                             <Label Content="Location" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
-                            <Label Content="    X:" Grid.Column="0" Grid.Row="4" />
+                            <Label Content="    X(m):" Grid.Column="0" Grid.Row="4" />
                             <TextBox Text="{Binding Path=Data[0].X, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" VerticalContentAlignment="Center" />
-                            <Label Content="meters" Grid.Column="2" Grid.Row="4" />
-                            <Label Content="    Y:" Grid.Column="0" Grid.Row="5" />
+                            <Label Content="    Y(m):" Grid.Column="0" Grid.Row="5" />
                             <TextBox Text="{Binding Path=Data[0].Y, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" VerticalContentAlignment="Center"/>
-                            <Label Content="meters" Grid.Column="2" Grid.Row="5" />
-                            <Label Content="    Z:" Grid.Column="0" Grid.Row="6" />
+                            <Label Content="    Z(m):" Grid.Column="0" Grid.Row="6" />
                             <TextBox Text="12" Grid.Column="1" Grid.Row="6" VerticalContentAlignment="Center"/>
-                            <Label Content="meters" Grid.Column="2" Grid.Row="6" />
                             <Label Content="" Grid.Column="0" Grid.Row="7"></Label>
 
                             <Label Content="Velocity" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2"/>
-                            <Label Content="    X:" Grid.Column="0" Grid.Row="9"/>
+                            <Label Content="    X(m/s):" Grid.Column="0" Grid.Row="9"/>
                             <TextBox Text="4.3" Grid.Column="1" Grid.Row="9" VerticalContentAlignment="Center"/>
-                            <Label Content="m/s" Grid.Column="2" Grid.Row="9" />
-                            <Label Content="    Y:" Grid.Column="0" Grid.Row="10"/>
+                            <Label Content="    Y(m/s):" Grid.Column="0" Grid.Row="10"/>
                             <TextBox Text="-2.1" Grid.Column="1" Grid.Row="10" VerticalContentAlignment="Center"/>
-                            <Label Content="m/s" Grid.Column="2" Grid.Row="10" />
-                            <Label Content="    Z:" Grid.Column="0" Grid.Row="11"/>
+                            <Label Content="    Z(m/s):" Grid.Column="0" Grid.Row="11"/>
                             <TextBox Text="0.05" Grid.Column="1" Grid.Row="11" VerticalContentAlignment="Center"/>
-                            <Label Content="m/s" Grid.Column="2" Grid.Row="11" />
                             <Label Content="" Grid.Column="0" Grid.Row="12"></Label>
 
                             <Label Content="Antenna Parameters" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2"/>
@@ -183,9 +177,85 @@
                         </Grid>
                     </Grid>
                 </TabItem>
+                
                 <TabItem Header="Mobile Stations">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="ID:" Grid.Column="0" Grid.Row="0"></Label>
+                            <ComboBox Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                                <Label Content="1"/>
+                                <Label Content="2"/>
+                                <Label Content="3"/>
+                                <Label Content="4"/>
+                            </ComboBox>
+
+                            <Label Content="Name:" Grid.Column="0" Grid.Row="1"></Label>
+                            <TextBox Text="MobileStation1 - iPhone6S" Grid.Column="1" Grid.Row="1" Name="MSName"></TextBox>
+                            <Label Content="" Grid.Column="0" Grid.Row="2"></Label>
+
+                            <Label Content="Location" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                            <Label Content="    Motion Type:" Grid.Column="0" Grid.Row="4"/>
+                            <ComboBox Grid.Column="1" Grid.Row="4" SelectedIndex="1">
+                                <Label Content="No Motion"/>
+                                <Label Content="Circular Motion"/>
+                                <Label Content="Linear Motion"/>
+                            </ComboBox>
+                            <!--configurable parameters for No Motion Case-->
+                            <Label Content="    X(m):" Grid.Column="0" Grid.Row="5" Visibility="Hidden"/>
+                            <TextBox Text="{Binding Path=Data[0].X, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" VerticalContentAlignment="Center" Visibility="Hidden"/>
+                            <Label Content="    Y(m):" Grid.Column="0" Grid.Row="6" Visibility="Hidden"/>
+                            <TextBox Text="{Binding Path=Data[0].Y, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="6" VerticalContentAlignment="Center" Visibility="Hidden"/>
+                            <Label Content="    Z(m):" Grid.Column="0" Grid.Row="7" Visibility="Hidden"/>
+                            <TextBox Text="12" Grid.Column="1" Grid.Row="7" VerticalContentAlignment="Center" Visibility="Hidden"/>
+                            <!--configurable parameters for Circular Motion Case-->
+                            <Label Content="    Origin X(m):" Grid.Column="0" Grid.Row="5" />
+                            <TextBox Text="{Binding Path=Data[0].OriginX, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" VerticalContentAlignment="Center" />
+                            <Label Content="    Origin Y(m):" Grid.Column="0" Grid.Row="6"/>
+                            <TextBox Text="{Binding Path=Data[0].OriginY, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="6" VerticalContentAlignment="Center" />
+                            <Label Content="    Radius(m):" Grid.Column="0" Grid.Row="7"/>
+                            <TextBox Text="{Binding Path=Data[0].Radius}" Grid.Column="1" Grid.Row="7" VerticalContentAlignment="Center" />
+                            <Label Content="    Velocity(m/s):" Grid.Column="0" Grid.Row="8"/>
+                            <TextBox Text="{Binding Path=Data[0].Velocity}" Grid.Column="1" Grid.Row="8" VerticalContentAlignment="Center"/>
+                            <Label Content="    # of intervals:" Grid.Column="0" Grid.Row="9"/>
+                            <TextBox Text="{Binding Path=Data[0].Intervals}" Grid.Column="1" Grid.Row="9" VerticalContentAlignment="Center"/>
+
+                            <Label Content="" Grid.Column="0" Grid.Row="10"></Label>
+
+                            <Label Content="Antenna Parameters" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"/>
+                            <TextBlock Text="Antenna Polarization:" Grid.Column="0" Grid.Row="12" TextWrapping="Wrap" Margin="18,0,0,0"/>
+                            <ComboBox Grid.Column="1" Grid.Row="12" SelectedIndex="0">
+                                <Label Content="|| Polarized"/>
+                                <Label Content="X Polarized"/>
+                                <Label Content="+ Polarized"/>
+                            </ComboBox>
+                            <Label Content="    [TODO: add more parameters]" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2"/>
+
+                        </Grid>
                 </TabItem>
+                
                 <TabItem Header="Links"/>
             </TabControl>
         </Grid>
@@ -226,7 +296,7 @@
 
                 </ig:ScatterSeries>
 
-                <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
+                <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{Binding}"
                                   XMemberPath="X" YMemberPath="Y"
                                   XAxis="{Binding ElementName=ScatterXAxis}"
                                   YAxis="{Binding ElementName=ScatterYAxis}"
