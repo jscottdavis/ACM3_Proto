@@ -1,0 +1,280 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACM3_Proto"
+        xmlns:ig="http://schemas.infragistics.com/xaml" x:Class="ACM3_Proto.MainWindow"
+        mc:Ignorable="d"
+        Title="Spirent Advanced Channel Model Utility" Height="600" Width="1000">
+
+    <Window.Resources>
+        <local:BSDataSource x:Key="MyData"></local:BSDataSource>
+        <local:MSDataSource x:Key="MSData"></local:MSDataSource>
+        <DataTemplate x:Key="HexagonMarkerTemplate">
+
+            <Polygon Points="4 0 0.536 2 0.536 6 4 8 7.464 6 7.464 2" 
+                 Stretch="Fill" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" 
+                 Fill="{Binding ActualItemBrush}" 
+                 Stroke="{Binding Series.ActualMarkerOutline}" 
+                 StrokeThickness="0.5" 
+                 MinWidth="20" MinHeight="20"
+                     />
+        </DataTemplate>
+
+        <DataTemplate x:Key="CustomMarkerTemplate">
+            <Grid Margin="0,0,0,0">
+                <Polygon Points="4 0 0.536 2 0.536 6 4 8 7.464 6 7.464 2" 
+                 Stretch="Fill" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" 
+                 Fill="{Binding ActualItemBrush}" 
+                 Stroke="{Binding Series.ActualMarkerOutline}" 
+                 StrokeThickness="0.5" 
+                 MinWidth="30" MinHeight="30"
+                     />
+                <TextBlock Margin="2" Text="{Binding Item.Label}" 
+                                         Foreground="White" FontSize="14" 
+                                        FontFamily="Bookman"
+                                         HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+
+
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CircleMarkerTemplate">
+            <Grid Margin="0,0,0,0">
+                <Ellipse Stretch="Fill" 
+                 HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Stretch" 
+                 Fill="{Binding ActualItemBrush}" 
+                 Stroke="{Binding Series.ActualMarkerOutline}" 
+                 StrokeThickness="0.5" 
+                 MinWidth="16" MinHeight="16" />
+                <TextBlock Text="{Binding Item.Index}" 
+                                         Foreground="White" FontSize="10" 
+                                        FontFamily="Bookman"
+                                         HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New Scenario" />
+                <MenuItem Header="_Open Scenario" />
+                <MenuItem Header="_Save Scenario" />
+                <MenuItem Header="Save _As Scenario" />
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="_Configure">
+                <MenuItem Header="_Enter Password" />
+            </MenuItem>
+            <MenuItem Header="_Execute">
+                <MenuItem Header="_Build Environment" />
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="_Parameters" />
+                <MenuItem Header="_Network Layout" />
+                <MenuItem Header="_Simulation Output" />
+                <Separator></Separator>
+                <MenuItem Header="_Restore Default Window Layout" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" />
+                <MenuItem Header="_Help" />
+            </MenuItem>
+        </Menu>
+        
+    <Grid>
+        <!--The Main Grid has 3 columns-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>   <!--Parameters-->
+            <ColumnDefinition Width="*" />     <!--Network Layout-->
+            <ColumnDefinition Width="200"/>    <!--Simulation Output-->
+        </Grid.ColumnDefinitions>
+
+        <!--Parameters Tab-->
+        <Grid Name="Parameters" Grid.Column="0" Background="LightGray">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Parameters" Grid.Column="0" Grid.Row="0" Height="Auto" FontSize="16"></Label>
+
+            <TabControl Grid.Column="0" Grid.Row="1">
+                <TabItem Header="Base Stations">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="ID:" Grid.Column="0" Grid.Row="0"></Label>
+                            <ComboBox Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                                <Label Content="1"/>
+                                <Label Content="2"/>
+                                <Label Content="3"/>
+                            </ComboBox>
+
+                            <Label Content="Name:" Grid.Column="0" Grid.Row="1"></Label>
+                            <TextBox Text="BaseStation1" Grid.Column="1" Grid.Row="1" Name="BSName"></TextBox>
+                            <Label Content="" Grid.Column="0" Grid.Row="2"></Label>
+
+                            <Label Content="Location" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+                            <Label Content="    X:" Grid.Column="0" Grid.Row="4" />
+                            <TextBox Text="{Binding Path=Data[0].X, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" VerticalContentAlignment="Center" />
+                            <Label Content="meters" Grid.Column="2" Grid.Row="4" />
+                            <Label Content="    Y:" Grid.Column="0" Grid.Row="5" />
+                            <TextBox Text="{Binding Path=Data[0].Y, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="5" VerticalContentAlignment="Center"/>
+                            <Label Content="meters" Grid.Column="2" Grid.Row="5" />
+                            <Label Content="    Z:" Grid.Column="0" Grid.Row="6" />
+                            <TextBox Text="12" Grid.Column="1" Grid.Row="6" VerticalContentAlignment="Center"/>
+                            <Label Content="meters" Grid.Column="2" Grid.Row="6" />
+                            <Label Content="" Grid.Column="0" Grid.Row="7"></Label>
+
+                            <Label Content="Velocity" Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2"/>
+                            <Label Content="    X:" Grid.Column="0" Grid.Row="9"/>
+                            <TextBox Text="4.3" Grid.Column="1" Grid.Row="9" VerticalContentAlignment="Center"/>
+                            <Label Content="m/s" Grid.Column="2" Grid.Row="9" />
+                            <Label Content="    Y:" Grid.Column="0" Grid.Row="10"/>
+                            <TextBox Text="-2.1" Grid.Column="1" Grid.Row="10" VerticalContentAlignment="Center"/>
+                            <Label Content="m/s" Grid.Column="2" Grid.Row="10" />
+                            <Label Content="    Z:" Grid.Column="0" Grid.Row="11"/>
+                            <TextBox Text="0.05" Grid.Column="1" Grid.Row="11" VerticalContentAlignment="Center"/>
+                            <Label Content="m/s" Grid.Column="2" Grid.Row="11" />
+                            <Label Content="" Grid.Column="0" Grid.Row="12"></Label>
+
+                            <Label Content="Antenna Parameters" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2"/>
+                            <TextBlock Text="Antenna Configuration:" Grid.Column="0" Grid.Row="14" TextWrapping="Wrap" Margin="18,0,0,0"/>
+                            <ComboBox Grid.Column="1" Grid.Row="14" SelectedIndex="0">
+                                <Label Content="||"/>
+                                <Label Content="|+"/>
+                                <Label Content="X"/>
+                            </ComboBox>
+                            <Label Content="    [TODO: add more parameters]" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Mobile Stations">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Links"/>
+            </TabControl>
+        </Grid>
+
+        <!--Network Layout Tab-->
+        <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
+                         HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"
+                         HexagonMarkerTemplate="{StaticResource CustomMarkerTemplate}" CircleMarkerTemplate="{StaticResource CircleMarkerTemplate }" Background="#FFE1FBF4" 
+                         >
+
+            <ig:XamDataChart.Axes>
+                <ig:NumericXAxis x:Name="ScatterXAxis" MinimumValue="-1000" MaximumValue="1000" Title="X (meters)" />
+                <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
+            </ig:XamDataChart.Axes>
+            <ig:XamDataChart.Series>
+                <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
+                                  ItemsSource="{Binding}"
+                                  XMemberPath="X" YMemberPath="Y"
+                                  XAxis="{Binding ElementName=ScatterXAxis}"
+                                  YAxis="{Binding ElementName=ScatterYAxis}"
+                                  MarkerBrush="Blue"
+                                  MarkerOutline="Black"
+                                   MarkerType="Hexagon"
+                                  Legend="{Binding ElementName=Legend1}">
+
+                    <ig:ScatterSeries.LegendItemBadgeTemplate>
+                        <DataTemplate>
+                            <Grid Margin="3">
+                                <Polygon Points="4 0 0.536 2 0.536 6 4 8 7.464 6 7.464 2"  
+                                        Width="11" Height="11"
+                                         Stretch="Fill"
+                                         HorizontalAlignment="Stretch" 
+                                        VerticalAlignment="Stretch" 
+                                        Fill="{Binding ActualItemBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ig:ScatterSeries.LegendItemBadgeTemplate>
+
+                </ig:ScatterSeries>
+
+                <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
+                                  XMemberPath="X" YMemberPath="Y"
+                                  XAxis="{Binding ElementName=ScatterXAxis}"
+                                  YAxis="{Binding ElementName=ScatterYAxis}"
+                                  MarkerType="Circle"
+                                  MarkerBrush="Magenta"
+                                  MarkerOutline="Black"
+                                 Legend="{Binding ElementName=Legend1}"
+                                 >
+                    <ig:ScatterSeries.LegendItemBadgeTemplate>
+                        <DataTemplate>
+                            <Grid Margin="2">
+                                <Ellipse 
+                                        Width="10" Height="10"
+                                        Fill="{Binding ActualItemBrush}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ig:ScatterSeries.LegendItemBadgeTemplate>
+                </ig:ScatterSeries>
+            </ig:XamDataChart.Series>
+
+        </ig:XamDataChart>
+
+        <!--Parameters Tab-->
+        <Grid Name="SimOutput" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Simulation Output" Grid.Row="0" Height="Auto" FontSize="16" Background="Black" Foreground="Red"></Label>
+            <RichTextBox Grid.Row="1" Background="Black" Foreground="Chartreuse">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="09:57:32 Simulation Started..."/>
+                        <Run Text="09:57:56 Simulation Continuing..."/>
+                        <Run Text="09:58:23 Simulation Continuing..."/>
+                        <Run Text="09:58:58 Simulation Continuing..."/>
+                        <Run Text="09:59:14 Simulation Completed!"/>
+                        <Run Text="09:59:14 Total Run Time = 00:01:42"/>
+                        <Run Text=""/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+
+
+        </Grid>
+
+    </Grid>
+
+    </DockPanel>
+</Window>
