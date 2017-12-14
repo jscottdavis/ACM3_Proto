@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Infragistics.Windows.DataPresenter;
 
 namespace ACM3_Proto
 {
@@ -30,8 +31,16 @@ namespace ACM3_Proto
             this.DataContext = myDataSource;
             this.NetworkLayout1.Series[0].ItemsSource = myDataSource;
 
-            msDataSource = new MSDataSource();
-            this.NetworkLayout1.Series[1].ItemsSource = msDataSource;
+            Button button = new Button();
+            button.Content = "Edit";
+           // button.Width = 50;
+            this.LinkDataSource.DataItems.Add(new LinkData(1, 1, 1, button));
+            this.LinkDataSource.DataItems.Add(new LinkData(2, 2, 1, button));
+            this.LinkDataSource.DataItems.Add(new LinkData(3, 2, 3, button));
+
+            //this.LinkDataSource.DataItems[0].FieldLayouts[0].Fields["LinkID"].Width = new FieldLength(50);
+            //this.LinkDataSource.FieldLayouts[0].Fields["BSID"].Width = new FieldLength(50);
+            //this.LinkDataSource.FieldLayouts[0].Fields["MSID"].Width = new FieldLength(50);
         }
-     }
+    }
 }
