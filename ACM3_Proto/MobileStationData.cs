@@ -12,7 +12,6 @@ namespace ACM3_Proto
         double _OriginX;
            
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         public int Index { get; set; } 
         public double X { get; set; }
