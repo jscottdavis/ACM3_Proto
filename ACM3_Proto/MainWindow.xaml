@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ACM3_Proto"
         xmlns:ig="http://schemas.infragistics.com/xaml" xmlns:Custom="http://infragistics.com/Ribbon" xmlns:Custom1="http://infragistics.com/DataPresenter" x:Class="ACM3_Proto.MainWindow"
         mc:Ignorable="d"
-        Title="Spirent Advanced Channel Model Utility" Height="600" Width="1025">
+        Title="Spirent Advanced Channel Model Utility" Height="650" Width="1110">
 
     <Window.Resources>
         <local:BSDataSource x:Key="MyData"></local:BSDataSource>
@@ -107,11 +107,11 @@
         <Grid>
             <!--The Main Grid has 3 columns-->
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="275"/>
+                <ColumnDefinition Width="300"/>
                 <!--Parameters-->
                 <ColumnDefinition Width="*" />
                 <!--Network Layout-->
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="225"/>
                 <!--Simulation Output-->
             </Grid.ColumnDefinitions>
 
@@ -273,13 +273,13 @@
 
                     <TabItem Header="Links">
                         <Grid Background="#FFE5E5E5">
-                            <Custom1:XamDataPresenter Name="LinkDataSource" VerticalAlignment="Top" Height="200" Theme="Onyx">
+                            <Custom1:XamDataPresenter Name="LinkDataSource" VerticalAlignment="Top" Height="200" Theme="Royale">
                                 <Custom1:XamDataPresenter.FieldLayouts>
                                     <Custom1:FieldLayout>
                                         <Custom1:Field Name="LinkID" Width="50" />
                                         <Custom1:Field Name="BSID" Width="50"/>
                                         <Custom1:Field Name="MSID" Width="50"/>
-                                         <!--<Custom1:Field Name="Channel Model">
+                                        <!--<Custom1:Field Name="Channel Model">
                                             <Custom1:Field.Settings>
                                                 <Custom1:FieldSettings CellValuePresenterStyle="{StaticResource buttonInCellStyle}" />
                                             </Custom1:Field.Settings>

@@ -31,12 +31,20 @@ namespace ACM3_Proto
             this.DataContext = myDataSource;
             this.NetworkLayout1.Series[0].ItemsSource = myDataSource;
 
-            Button button = new Button();
-            button.Content = "Edit";
-           // button.Width = 50;
-            this.LinkDataSource.DataItems.Add(new LinkData(1, 1, 1, button));
-            this.LinkDataSource.DataItems.Add(new LinkData(2, 2, 1, button));
-            this.LinkDataSource.DataItems.Add(new LinkData(3, 2, 3, button));
+            System.Windows.Thickness thickness = new Thickness(2, 2, 2, 2);
+            Button button1 = new Button();
+            button1.Content = "Edit";
+            button1.Margin = thickness;
+            Button button2 = new Button();
+            button2.Content = "Edit";
+            button2.Margin = thickness;
+            Button button3 = new Button();
+            button3.Content = "Edit";
+            button3.Margin = thickness;
+            // button.Width = 50;
+            this.LinkDataSource.DataItems.Add(new LinkData(1, 1, 1, button1));
+            this.LinkDataSource.DataItems.Add(new LinkData(2, 2, 1, button2));
+            this.LinkDataSource.DataItems.Add(new LinkData(3, 2, 3, button3));
 
             //this.LinkDataSource.DataItems[0].FieldLayouts[0].Fields["LinkID"].Width = new FieldLength(50);
             //this.LinkDataSource.FieldLayouts[0].Fields["BSID"].Width = new FieldLength(50);

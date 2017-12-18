@@ -66,7 +66,7 @@ namespace ACM3_Proto
             {
                 if (_button != value)
                 {
-                    //_BSID = value;
+                    _button = value;
                     OnPropertyChanged("Channel Model");
                 }
             }
