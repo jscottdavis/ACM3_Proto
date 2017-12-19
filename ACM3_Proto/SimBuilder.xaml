@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Label Content="Simulation Builder" Grid.Row="0" Grid.ColumnSpan="2"  Height="Auto" FontSize="16" Background="Black" Foreground="SkyBlue"/>
@@ -72,6 +73,7 @@
             </FlowDocument>
         </RichTextBox>
 
+        <Label Content="Status: Idle" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Foreground="SkyBlue" BorderThickness="1" BorderBrush="Silver"/>
 
     </Grid>
 </Page>

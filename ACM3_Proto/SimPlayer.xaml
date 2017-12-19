@@ -55,7 +55,7 @@
                     <Run Text=" "/>
                     <Run Text=" "/>
                     <Run Text=" "/>
-                    <Run Text="11:13:14 I/Q playback Completed!"/>
+                    <Run Text="11:13:14 I/Q playback continuing..."/>
                     <Run Text=" "/>
                     <Run Text=" "/>
                     <Run Text=" "/>
@@ -63,5 +63,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+
+        <Label Content="Status: Running..." Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Foreground="SkyBlue" BorderThickness="1" BorderBrush="Silver"/>
     </Grid>
 </Page>
