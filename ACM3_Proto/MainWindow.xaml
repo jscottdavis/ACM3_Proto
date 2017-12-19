@@ -115,7 +115,7 @@
                 <!--Simulation Output-->
             </Grid.ColumnDefinitions>
 
-            <!--Parameters Tab-->
+            <!--Parameters Page-->
             <Grid x:Name="Parameters" Grid.Column="0" Background="LightGray">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -298,18 +298,26 @@
                 </TabControl>
             </Grid>
 
-            <!--Network Layout Tab-->
-            <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
+            <!--Network Layout Page-->
+            <Grid x:Name="CenterWindow" Grid.Column="1" Background="#FFE1FBF4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Network Layout" Grid.Row="0" Height="Auto" FontSize="16"/>
+                <TabControl x:Name="CenterTab" Grid.Row="1">
+                    <TabItem Header="Network Layout">
+                    <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
                          HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"
                          HexagonMarkerTemplate="{StaticResource CustomMarkerTemplate}" CircleMarkerTemplate="{StaticResource CircleMarkerTemplate}" Background="#FFE1FBF4" 
                          >
 
-                <ig:XamDataChart.Axes>
-                    <ig:NumericXAxis x:Name="ScatterXAxis" MinimumValue="-1000" MaximumValue="1000" Title="X (meters)" />
-                    <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
-                </ig:XamDataChart.Axes>
-                <ig:XamDataChart.Series>
-                    <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
+                        <ig:XamDataChart.Axes>
+                            <ig:NumericXAxis x:Name="ScatterXAxis" MinimumValue="-1000" MaximumValue="1000" Title="X (meters)" />
+                            <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
+                        </ig:XamDataChart.Axes>
+                        <ig:XamDataChart.Series>
+                            <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
                                   ItemsSource="{Binding}"
                                   XMemberPath="X" YMemberPath="Y"
                                   XAxis="{Binding ElementName=ScatterXAxis}"
@@ -319,22 +327,22 @@
                                    MarkerType="Hexagon"
                                   Legend="{Binding ElementName=Legend1}">
 
-                        <ig:ScatterSeries.LegendItemBadgeTemplate>
-                            <DataTemplate>
-                                <Grid Margin="3">
-                                    <Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
+                                <ig:ScatterSeries.LegendItemBadgeTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="3">
+                                            <Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
                                         Width="11" Height="11"
                                          Stretch="Fill"
                                          HorizontalAlignment="Stretch" 
                                         VerticalAlignment="Stretch" 
                                         Fill="{Binding ActualItemBrush}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ig:ScatterSeries.LegendItemBadgeTemplate>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ig:ScatterSeries.LegendItemBadgeTemplate>
 
-                    </ig:ScatterSeries>
+                            </ig:ScatterSeries>
 
-                    <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
+                            <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
                                   XMemberPath="X" YMemberPath="Y"
                                   XAxis="{Binding ElementName=ScatterXAxis}"
                                   YAxis="{Binding ElementName=ScatterYAxis}"
@@ -343,61 +351,79 @@
                                   MarkerOutline="Black"
                                  Legend="{Binding ElementName=Legend1}"
                                  >
-                        <ig:ScatterSeries.LegendItemBadgeTemplate>
-                            <DataTemplate>
-                                <Grid Margin="2">
-                                    <Ellipse 
+                                <ig:ScatterSeries.LegendItemBadgeTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="2">
+                                            <Ellipse 
                                         Width="10" Height="10"
                                         Fill="{Binding ActualItemBrush}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ig:ScatterSeries.LegendItemBadgeTemplate>
-                    </ig:ScatterSeries>
-                </ig:XamDataChart.Series>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ig:ScatterSeries.LegendItemBadgeTemplate>
+                            </ig:ScatterSeries>
+                        </ig:XamDataChart.Series>
 
-            </ig:XamDataChart>
+                    </ig:XamDataChart>
+                    </TabItem>
 
-            <!--Parameters Tab-->
+                    <TabItem Header="Channel Model">
+                        <Grid>
+
+                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                             <ColumnDefinition Width="100"/>
+                             <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                            <Label Content="Link ID:" Grid.Column="0" Grid.Row="0"/>
+                            <ComboBox x:Name="ComboLinkID" Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                                <ComboBoxItem Content="1"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                            </ComboBox>
+                            <Label Content="" Grid.Column="0" Grid.Row="1"/>
+                            
+                            <Label Content="Channel Model:" Grid.Column="0" Grid.Row="2"/>
+                            <ComboBox Grid.Column="1" Grid.Row="2" SelectedIndex="0">
+                                <ComboBoxItem Content="SCME"/>
+                            </ComboBox>
+                            <Label Content="Power Angle Spectrum:" Grid.Column="0" Grid.Row="3"/>
+                            <ComboBox Grid.Column="1" Grid.Row="3" SelectedIndex="0">
+                                <ComboBoxItem Content="Laplacian"/>
+                            </ComboBox>
+                            <Label Content="TODO: add more parameters" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4"/>
+
+
+                        </Grid>
+
+                    </TabItem>
+                </TabControl>
+            </Grid>
+
+            <!--Simulation Output Page-->
             <Grid x:Name="SimOutput" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <Label Content="Simulation Output" Grid.Row="0" Height="Auto" FontSize="16" Background="Black" Foreground="Red"/>
-                <RichTextBox Grid.Row="1" Background="Black" Foreground="Chartreuse">
-                    <FlowDocument>
-                        <Paragraph>
-                            <Run Text="09:57:32 Simulation Started..."/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text="09:57:56 Simulation Continuing..."/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text="09:58:23 Simulation Continuing..."/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text="09:58:58 Simulation Continuing..."/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text="09:59:14 Simulation Completed!"/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text="09:59:14 Total Run Time = 00:01:42"/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=" "/>
-                            <Run Text=""/>
-                        </Paragraph>
-                    </FlowDocument>
-                </RichTextBox>
-
-
+                <Frame Source="SimBuilder.xaml"/>
             </Grid>
 
         </Grid>
