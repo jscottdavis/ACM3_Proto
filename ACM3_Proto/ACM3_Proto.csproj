@@ -87,6 +87,9 @@
     <Compile Include="SimBuilder.xaml.cs">
       <DependentUpon>SimBuilder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SimPlayer.xaml.cs">
+      <DependentUpon>SimPlayer.xaml</DependentUpon>
+    </Compile>
     <Page Include="ChannelModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +112,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SimBuilder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

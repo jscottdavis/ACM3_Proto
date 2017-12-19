@@ -111,7 +111,7 @@
                 <!--Parameters-->
                 <ColumnDefinition Width="*" />
                 <!--Network Layout-->
-                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="300"/>
                 <!--Simulation Output-->
             </Grid.ColumnDefinitions>
 
@@ -423,7 +423,12 @@
 
             <!--Simulation Output Page-->
             <Grid x:Name="SimOutput" Grid.Column="2">
-                <Frame Source="SimBuilder.xaml"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="400"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame Grid.Row="0" BorderThickness="3" BorderBrush="Silver" Source="SimBuilder.xaml"/>
+                <Frame Grid.Row="1" BorderThickness="3" BorderBrush="Silver"  Source="SimPlayer.xaml"/>
             </Grid>
 
         </Grid>
