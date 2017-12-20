@@ -62,6 +62,26 @@ namespace ACM3_Proto
             //ChannelModel model = new ChannelModel();
             //model.Show();
         }
+
+        private void Menu_Instruments_Click(object sender, RoutedEventArgs e)
+        {
+            InstrumentConfig instrumentConfig = new InstrumentConfig();
+            instrumentConfig.ShowDialog();
+        }
+
+        private void Image_Loaded(object sender, RoutedEventArgs e)
+        {
+            // ... Create a new BitmapImage.
+            BitmapImage b = new BitmapImage();
+            b.BeginInit();
+            b.UriSource = new Uri(Environment.CurrentDirectory + "\\8x2.png");
+            b.EndInit();
+
+            // ... Get Image reference from sender.
+            var image = sender as Image;
+            // ... Assign Source.
+            image.Source = b;
+        }
     }
 
  

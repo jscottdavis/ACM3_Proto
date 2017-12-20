@@ -1,0 +1,38 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACM3_Proto"
+        xmlns:Custom="http://infragistics.com/DataPresenter" x:Class="ACM3_Proto.InstrumentConfig"
+        mc:Ignorable="d"
+        Title="InstrumentConfig" Height="300" Width="450">
+    <Grid Background="AliceBlue">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Custom:XamDataPresenter Grid.Row="0" Grid.ColumnSpan="2" Name="InstrumentConfigDataSource"  BorderThickness="2" BorderBrush="Silver" VerticalAlignment="Top" Height="100" Theme="Royale">
+            <Custom:XamDataPresenter.FieldLayouts>
+                <Custom:FieldLayout>
+                    <Custom:Field Name="Enabled" Width="10"/>
+                    <Custom:Field Name="Instrument Name" Width="50"/>
+                    <Custom:Field Name="Address" Width="100"/>
+                </Custom:FieldLayout>
+            </Custom:XamDataPresenter.FieldLayouts>
+            <Custom:XamDataPresenter.FieldLayoutSettings>
+                <Custom:FieldLayoutSettings RecordSelectorLocation="None" />
+            </Custom:XamDataPresenter.FieldLayoutSettings>
+        </Custom:XamDataPresenter>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="OK" MaxHeight="30" MaxWidth="80"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="Cancel" MaxHeight="30" MaxWidth="80"/>
+    </Grid>
+</Window>
