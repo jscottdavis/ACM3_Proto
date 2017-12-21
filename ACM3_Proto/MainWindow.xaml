@@ -125,7 +125,7 @@
 
                 <Label Content="Parameters" Grid.Column="0" Grid.Row="0" Height="Auto" FontSize="16"/>
 
-                <TabControl Grid.Column="0" Grid.Row="1">
+                <TabControl Name="ParametersTab" Grid.Column="0" Grid.Row="1">
                     <TabItem Header="Base Stations">
                         <Grid Background="#FFE5E5E5">
                             <Grid>
@@ -272,28 +272,8 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Links">
-                        <Grid Background="#FFE5E5E5">
-                            <Custom1:XamDataPresenter Name="LinkDataSource" VerticalAlignment="Top" Height="200" Theme="Royale">
-                                <Custom1:XamDataPresenter.FieldLayouts>
-                                    <Custom1:FieldLayout>
-                                        <Custom1:Field Name="LinkID" Width="50" />
-                                        <Custom1:Field Name="BSID" Width="50"/>
-                                        <Custom1:Field Name="MSID" Width="50"/>
-                                        <!--<Custom1:Field Name="Channel Model">
-                                            <Custom1:Field.Settings>
-                                                <Custom1:FieldSettings CellValuePresenterStyle="{StaticResource buttonInCellStyle}" />
-                                            </Custom1:Field.Settings>
-                                        </Custom1:Field>-->
-                                    </Custom1:FieldLayout>
-                                </Custom1:XamDataPresenter.FieldLayouts>
-                                <Custom1:XamDataPresenter.FieldLayoutSettings>
-                                    <Custom1:FieldLayoutSettings RecordSelectorLocation="None" />
-                                </Custom1:XamDataPresenter.FieldLayoutSettings>
-                            </Custom1:XamDataPresenter>
-                            <Button Content="Add Link" HorizontalAlignment="Left" Margin="25,225,0,0" VerticalAlignment="Top" Width="75"/>
-
-                        </Grid>
+                    <TabItem Header="Links" Background="silver">
+                        <Frame VerticalAlignment="Top" Source="Links.xaml" Background="silver"/>
                     </TabItem>
 
                 </TabControl>
@@ -368,16 +348,21 @@
                     </TabItem>
 
                     <TabItem Header="Connection Setup">
-                        <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Loaded="Image_Loaded"/>
+                        <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.RowSpan="4" Loaded="Image_Loaded"/>
                     </TabItem>
                     
                     <TabItem Header="Channel Model">
                         <Grid>
-
+                            <!--outer grid has two columns; one for data and one for pictures-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                        <!--inner left grid (data)-->
                          <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100"/>
-                             <ColumnDefinition Width="100"/>
-                             <ColumnDefinition Width="*" />
+                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -421,7 +406,11 @@
 
 
                         </Grid>
-
+                            <Grid Grid.Column="1">
+                                <!--inner right grid (pictures)-->
+                                <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,0,0" MaxHeight="200" Loaded="Link_Loaded"/>
+                            </Grid>
+                        </Grid>
                     </TabItem>
                 </TabControl>
             </Grid>

@@ -11,18 +11,34 @@ namespace ACM3_Proto
  
     public class LinkData : INotifyPropertyChanged
     {
+        CheckBox _enabled;
         int _linkID;
         int _BSID;
         int _MSID;
         Button _button;
  
-        public LinkData(int linkID, int BSID, int MSID, Button button)
+        public LinkData(CheckBox enabled, int linkID, int BSID, int MSID, Button button)
         {
+            this._enabled = enabled;
             this._linkID = linkID;
             this._BSID = BSID;
             this._MSID = MSID;
             this._button = button;
        }
+
+        public CheckBox Enabled
+        {
+            get { return _enabled; }
+            set
+            {
+                if (_enabled != value)
+                {
+                    _enabled = value;
+                    OnPropertyChanged("Enabled");
+                }
+            }
+        }
+
         public int LinkID
         {
             get { return _linkID; }

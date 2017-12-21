@@ -22,7 +22,7 @@ namespace ACM3_Proto
     public partial class MainWindow : Window
     {
         BSDataSource myDataSource;
-        MSDataSource msDataSource;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,34 +31,14 @@ namespace ACM3_Proto
             this.DataContext = myDataSource;
             this.NetworkLayout1.Series[0].ItemsSource = myDataSource;
 
-            System.Windows.Thickness thickness = new Thickness(2, 2, 2, 2);
-            Button button1 = new Button();
-            button1.Content = "Edit";
-            button1.Margin = thickness;
-            button1.Click += this.DisplayChannelModel;
-            Button button2 = new Button();
-            button2.Content = "Edit";
-            button2.Margin = thickness;
-            button2.Click += this.DisplayChannelModel;
-            Button button3 = new Button();
-            button3.Content = "Edit";
-            button3.Margin = thickness;
-            button3.Click += this.DisplayChannelModel;
-            // button.Width = 50;
-            this.LinkDataSource.DataItems.Add(new LinkData(1, 1, 1, button1));
-            this.LinkDataSource.DataItems.Add(new LinkData(2, 2, 1, button2));
-            this.LinkDataSource.DataItems.Add(new LinkData(3, 2, 3, button3));
 
-            //this.LinkDataSource.DataItems[0].FieldLayouts[0].Fields["LinkID"].Width = new FieldLength(50);
-            //this.LinkDataSource.FieldLayouts[0].Fields["BSID"].Width = new FieldLength(50);
-            //this.LinkDataSource.FieldLayouts[0].Fields["MSID"].Width = new FieldLength(50);
         }
 
-        private void DisplayChannelModel(object sender, RoutedEventArgs e)
+        public void DisplayChannelModel(object sender, RoutedEventArgs e)
         {
             // When user clicks the edit button, switch the view to show Channel Model GUI
-            this.CenterTab.SelectedIndex = 1;
-            this.ComboLinkID.SelectedIndex = 1;
+            this.CenterTab.SelectedIndex = 2;
+            this.ComboLinkID.SelectedIndex = 0;
             //ChannelModel model = new ChannelModel();
             //model.Show();
         }
@@ -81,6 +61,21 @@ namespace ACM3_Proto
             var image = sender as Image;
             // ... Assign Source.
             image.Source = b;
+        }
+
+        private void Link_Loaded(object sender, RoutedEventArgs e)
+        {
+            // ... Create a new BitmapImage.
+            BitmapImage b = new BitmapImage();
+            b.BeginInit();
+            b.UriSource = new Uri(Environment.CurrentDirectory + "\\link.png");
+            b.EndInit();
+
+            // ... Get Image reference from sender.
+            var image = sender as Image;
+            // ... Assign Source.
+            image.Source = b;
+
         }
     }
 

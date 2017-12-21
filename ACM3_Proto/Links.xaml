@@ -1,0 +1,28 @@
+﻿<Page x:Class="ACM3_Proto.Links"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACM3_Proto"
+        xmlns:Custom1="http://infragistics.com/DataPresenter"
+        mc:Ignorable="d"
+        Title="Links" Height="400">
+
+    <Grid Background="Silver">
+            <Custom1:XamDataPresenter VerticalAlignment="Top" Name="LinkDataSource" Theme="Royale">
+                <Custom1:XamDataPresenter.FieldLayouts>
+                    <Custom1:FieldLayout>
+                        <Custom1:Field Name="Enabled" Width="42"/>
+                        <Custom1:Field Name="LinkID" Width="50" />
+                        <Custom1:Field Name="BSID" Width="50"/>
+                        <Custom1:Field Name="MSID" Width="50"/>
+                        <Custom1:Field Name="ChannelModel" Width="100"/>
+                    </Custom1:FieldLayout>
+                </Custom1:XamDataPresenter.FieldLayouts>
+                <Custom1:XamDataPresenter.FieldLayoutSettings>
+                     <Custom1:FieldLayoutSettings RecordSelectorLocation="None" />
+                </Custom1:XamDataPresenter.FieldLayoutSettings>
+        </Custom1:XamDataPresenter>
+        </Grid>
+
+</Page>
