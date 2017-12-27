@@ -25,13 +25,13 @@
         </Grid.RowDefinitions>
 
         <Label Content="Vertex Player" Grid.Row="0" Grid.ColumnSpan="2"  Height="Auto" FontSize="16" Background="Black" Foreground="SkyBlue"/>
-        <Label Content="Path Name:" Grid.Row="1" Grid.Column="0" Background="Black" Foreground="White"/>
-        <!--<CheckBox Content="Same As Simulation Builder" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,0,0,0" Foreground="white"/>-->
+        <!--<Label Content="Path Name:" Grid.Row="1" Grid.Column="0" Background="Black" Foreground="White"/>
+        --><!--<CheckBox Content="Same As Simulation Builder" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,0,0,0" Foreground="white"/>--><!--
         <ComboBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="20,0,0,0" SelectedIndex="0">
             <ComboBoxItem Content="c:\program data\spirent\ACM\19-Dec-2017 08:56:33"/>
             <ComboBoxItem Content="c:\program data\spirent\ACM\17-Dec-2017 13:07:12"/>
-        </ComboBox>
-        <Label Content="" Grid.Row="3" Grid.Column="0"/>
+        </ComboBox>-->
+        <!--<Label Content="" Grid.Row="3" Grid.Column="0"/>-->
         
         <Button Content="Play" Grid.Row="4" Grid.Column="0"/>
         <Button Content="Pause" Grid.Row="4" Grid.Column="1"/>

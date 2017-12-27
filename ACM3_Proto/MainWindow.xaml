@@ -280,8 +280,9 @@
             </Grid>
 
             <!--Network Layout Page-->
-            <Grid x:Name="CenterWindow" Grid.Column="1" Background="#FFE1FBF4">
-                <Grid.RowDefinitions>
+            <!--<Grid x:Name="CenterWindow" Grid.Column="1" Background="#FFE1FBF4">-->
+                <Grid x:Name="CenterWindow" Grid.Column="1">
+                    <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -290,7 +291,7 @@
                     <TabItem Header="Network Layout">
                     <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
                          HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"
-                         HexagonMarkerTemplate="{StaticResource CustomMarkerTemplate}" CircleMarkerTemplate="{StaticResource CircleMarkerTemplate}" Background="#FFE1FBF4" 
+                         HexagonMarkerTemplate="{StaticResource CustomMarkerTemplate}" CircleMarkerTemplate="{StaticResource CircleMarkerTemplate}" 
                          >
 
                         <ig:XamDataChart.Axes>
@@ -298,28 +299,37 @@
                             <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
                         </ig:XamDataChart.Axes>
                         <ig:XamDataChart.Series>
-                            <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
+                                <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
                                   ItemsSource="{Binding}"
                                   XMemberPath="X" YMemberPath="Y"
                                   XAxis="{Binding ElementName=ScatterXAxis}"
-                                  YAxis="{Binding ElementName=ScatterYAxis}"
-                                  MarkerBrush="Blue"
+                                  YAxis="{Binding ElementName=ScatterYAxis}">
+                                    <!--MarkerBrush="Blue"
                                   MarkerOutline="Black"
                                    MarkerType="Hexagon"
-                                  Legend="{Binding ElementName=Legend1}">
+                                  Legend="{Binding ElementName=Legend1}"-->
 
-                                <ig:ScatterSeries.LegendItemBadgeTemplate>
+                                    <ig:ScatterSeries.MarkerTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="80" Height="80">
+                                                <Image  Loaded="BS_Loaded" Opacity="0.7"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ig:ScatterSeries.MarkerTemplate>
+
+                                    <!--<ig:ScatterSeries.LegendItemBadgeTemplate>
                                     <DataTemplate>
                                         <Grid Margin="3">
-                                            <Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
+                                                
+                                                --><!--<Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
                                         Width="11" Height="11"
                                          Stretch="Fill"
                                          HorizontalAlignment="Stretch" 
                                         VerticalAlignment="Stretch" 
-                                        Fill="{Binding ActualItemBrush}"/>
+                                        Fill="{Binding ActualItemBrush}"/>--><!--
                                         </Grid>
                                     </DataTemplate>
-                                </ig:ScatterSeries.LegendItemBadgeTemplate>
+                                </ig:ScatterSeries.LegendItemBadgeTemplate>-->
 
                             </ig:ScatterSeries>
 
@@ -385,13 +395,16 @@
                         </Grid.RowDefinitions>
 
                             <Label Content="Link ID:" Grid.Column="0" Grid.Row="0"/>
-                            <ComboBox x:Name="ComboLinkID" Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                              <ComboBox x:Name="ComboLinkID" Grid.Column="1" Grid.Row="0" SelectedIndex="0">
                                 <ComboBoxItem Content="1"/>
                                 <ComboBoxItem Content="2"/>
                                 <ComboBoxItem Content="3"/>
                                 <ComboBoxItem Content="4"/>
                                 <ComboBoxItem Content="5"/>
-                            </ComboBox>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                              </ComboBox>
                             <Label Content="" Grid.Column="0" Grid.Row="1"/>
                             
                             <Label Content="Channel Model:" Grid.Column="0" Grid.Row="2"/>

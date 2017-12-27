@@ -40,6 +40,7 @@ namespace ACM3_Proto
                 button[i].Content = "Edit";
                 button[i].Margin = thickness;
                 button[i].Click += mainWindow.DisplayChannelModel;
+                button[i].Tag = i;  //this helps identify which button was clicked
 
                 this.LinkDataSource.DataItems.Add(new LinkData(cb[i], i+1, (i % 4)+1, (i % 2)+1, button[i]));
             }

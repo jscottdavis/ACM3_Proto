@@ -37,8 +37,9 @@ namespace ACM3_Proto
         public void DisplayChannelModel(object sender, RoutedEventArgs e)
         {
             // When user clicks the edit button, switch the view to show Channel Model GUI
+            Button button = (Button) e.Source;
             this.CenterTab.SelectedIndex = 2;
-            this.ComboLinkID.SelectedIndex = 0;
+            this.ComboLinkID.SelectedIndex = (int)button.Tag;
             //ChannelModel model = new ChannelModel();
             //model.Show();
         }
@@ -69,6 +70,21 @@ namespace ACM3_Proto
             BitmapImage b = new BitmapImage();
             b.BeginInit();
             b.UriSource = new Uri(Environment.CurrentDirectory + "\\link.png");
+            b.EndInit();
+
+            // ... Get Image reference from sender.
+            var image = sender as Image;
+            // ... Assign Source.
+            image.Source = b;
+
+        }
+
+        private void BS_Loaded(object sender, RoutedEventArgs e)
+        {
+            // ... Create a new BitmapImage.
+            BitmapImage b = new BitmapImage();
+            b.BeginInit();
+            b.UriSource = new Uri(Environment.CurrentDirectory + "\\BaseStation.bmp");
             b.EndInit();
 
             // ... Get Image reference from sender.
