@@ -79,20 +79,20 @@ namespace ACM3_Proto
 
         }
 
-        private void BS_Loaded(object sender, RoutedEventArgs e)
-        {
-            // ... Create a new BitmapImage.
-            BitmapImage b = new BitmapImage();
-            b.BeginInit();
-            b.UriSource = new Uri(Environment.CurrentDirectory + "\\BaseStation.bmp");
-            b.EndInit();
+        //private void BS_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    // ... Create a new BitmapImage.
+        //    BitmapImage b = new BitmapImage();
+        //    b.BeginInit();
+        //    b.UriSource = new Uri(Environment.CurrentDirectory + "\\BaseStation.bmp");
+        //    b.EndInit();
 
-            // ... Get Image reference from sender.
-            var image = sender as Image;
-            // ... Assign Source.
-            image.Source = b;
+        //    // ... Get Image reference from sender.
+        //    var image = sender as Image;
+        //    // ... Assign Source.
+        //    image.Source = b;
 
-        }
+        //}
     }
 
  

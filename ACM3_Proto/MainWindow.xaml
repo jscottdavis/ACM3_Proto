@@ -312,7 +312,9 @@
                                     <ig:ScatterSeries.MarkerTemplate>
                                         <DataTemplate>
                                             <Grid Width="80" Height="80">
-                                                <Image  Loaded="BS_Loaded" Opacity="0.7"/>
+                                                <Image  Source="pack://siteoforigin:,,,/BaseStation.png" Opacity="0.7"/>
+                                                <!--<Image  Source="file:///C:\\BaseStation.png" Opacity="0.7"/>-->
+                                                <!--<Image  Source="file:///C:\\BaseStation.png" Opacity="0.7"/>-->
                                             </Grid>
                                         </DataTemplate>
                                     </ig:ScatterSeries.MarkerTemplate>
