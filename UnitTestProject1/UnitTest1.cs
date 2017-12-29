@@ -29,6 +29,16 @@ namespace UnitTestProject1
             Assert.AreNotEqual(linkData.LinkID, 17);
             Assert.AreEqual(linkData.MSID, 1);
         }
+
+        [TestMethod]
+        public void LinkDataVMCheckNumLinks()
+        {
+            MainWindow mainWindow = new MainWindow();
+            
+            Links links = new Links();
+
+            Assert.AreEqual(links.DataSource.DataItems.Count, 16);
+        }
     }
 
 

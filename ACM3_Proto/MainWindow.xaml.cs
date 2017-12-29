@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 using Infragistics.Windows.DataPresenter;
 
 namespace ACM3_Proto
@@ -31,20 +32,23 @@ namespace ACM3_Proto
             this.DataContext = myDataSource;
             this.NetworkLayout1.Series[0].ItemsSource = myDataSource;
 
-
+            Messenger.Default.Register<AppMessage>(this, (action) => ReceiveAMessage(action));
         }
 
-        public void DisplayChannelModel(object sender, RoutedEventArgs e)
+        // central message handler for the MainWindow
+        private object ReceiveAMessage(AppMessage msg)
         {
-            // When user clicks the edit button, switch the view to show Channel Model GUI
-            Button button = (Button) e.Source;
-            this.CenterTab.SelectedIndex = 2;
-            this.ComboLinkID.SelectedIndex = (int)button.Tag;
-            //ChannelModel model = new ChannelModel();
-            //model.Show();
+            switch (msg.Type)
+            {
+                case AppMessage.MsgType.ActivateChannelModelTab:
+                    this.CenterTab.SelectedIndex = 2;
+                    this.ComboLinkID.SelectedIndex = (int)msg.Param0;
+                    break;
+            }
+            return null;
         }
 
-        private void Menu_Instruments_Click(object sender, RoutedEventArgs e)
+         private void Menu_Instruments_Click(object sender, RoutedEventArgs e)
         {
             InstrumentConfig instrumentConfig = new InstrumentConfig();
             instrumentConfig.ShowDialog();

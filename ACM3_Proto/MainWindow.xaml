@@ -124,14 +124,46 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Parameters" Grid.Column="0" Grid.Row="0" Height="Auto" FontSize="16"/>
+                <TabControl Name="ParametersTab" Grid.Column="0" Grid.Row="1" Background="#FFF9F4F4">
+                    <!--<TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Border x:Name="grid" Background="#FFE5E5E5" BorderBrush="Black">
+                                            <ContentPresenter>
+                                                <ContentPresenter.Content>
+                                                    <TextBlock Margin="4" Text="{TemplateBinding Content}"/>
+                                                </ContentPresenter.Content>
+                                            </ContentPresenter>
+                                        </Border>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
+                                                <Setter TargetName="grid" Property="Background" Value="Aqua"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>-->
 
-                <TabControl Name="ParametersTab" Grid.Column="0" Grid.Row="1">
                     <TabItem Header="Base Stations">
-                        <Grid Background="#FFE5E5E5">
-                            <Grid>
+                        <TabItem.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#FFF71F1F" Offset="1"/>
+                            </LinearGradientBrush>
+                        </TabItem.Background>
+                        <ScrollViewer CanContentScroll="True">
+                            <Grid Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="140"/>
                                     <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                    <!--gives some margin at right side to look nice-->
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -191,7 +223,7 @@
                                 </ComboBox>
                                 <Label Content="    [TODO: add more parameters]" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2"/>
                             </Grid>
-                        </Grid>
+                        </ScrollViewer>
                     </TabItem>
 
                     <TabItem Header="Mobile Stations">
@@ -281,24 +313,24 @@
 
             <!--Network Layout Page-->
             <!--<Grid x:Name="CenterWindow" Grid.Column="1" Background="#FFE1FBF4">-->
-                <Grid x:Name="CenterWindow" Grid.Column="1">
-                    <Grid.RowDefinitions>
+            <Grid x:Name="CenterWindow" Grid.Column="1">
+                <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Network Layout" Grid.Row="0" Height="Auto" FontSize="16"/>
                 <TabControl x:Name="CenterTab" Grid.Row="1">
                     <TabItem Header="Network Layout">
-                    <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
+                        <ig:XamDataChart x:Name="NetworkLayout1" Title="Network Layout" Grid.Column="1" 
                          HorizontalAlignment="Stretch"  Margin="0,0,0,0" VerticalAlignment="Stretch"
                          HexagonMarkerTemplate="{StaticResource CustomMarkerTemplate}" CircleMarkerTemplate="{StaticResource CircleMarkerTemplate}" 
                          >
 
-                        <ig:XamDataChart.Axes>
-                            <ig:NumericXAxis x:Name="ScatterXAxis" MinimumValue="-1000" MaximumValue="1000" Title="X (meters)" />
-                            <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
-                        </ig:XamDataChart.Axes>
-                        <ig:XamDataChart.Series>
+                            <ig:XamDataChart.Axes>
+                                <ig:NumericXAxis x:Name="ScatterXAxis" MinimumValue="-1000" MaximumValue="1000" Title="X (meters)" />
+                                <ig:NumericYAxis x:Name="ScatterYAxis" MinimumValue="-1000" MaximumValue="1000" Title="Y (meters)" />
+                            </ig:XamDataChart.Axes>
+                            <ig:XamDataChart.Series>
                                 <ig:ScatterSeries x:Name="mySeries" Title="Base Stations" 
                                   ItemsSource="{Binding}"
                                   XMemberPath="X" YMemberPath="Y"
@@ -323,19 +355,21 @@
                                     <DataTemplate>
                                         <Grid Margin="3">
                                                 
-                                                --><!--<Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
+                                                -->
+                                    <!--<Polygon Points="4,0 0.536,2 0.536,6 4,8 7.464,6 7.464,2"  
                                         Width="11" Height="11"
                                          Stretch="Fill"
                                          HorizontalAlignment="Stretch" 
                                         VerticalAlignment="Stretch" 
-                                        Fill="{Binding ActualItemBrush}"/>--><!--
+                                        Fill="{Binding ActualItemBrush}"/>-->
+                                    <!--
                                         </Grid>
                                     </DataTemplate>
                                 </ig:ScatterSeries.LegendItemBadgeTemplate>-->
 
-                            </ig:ScatterSeries>
+                                </ig:ScatterSeries>
 
-                            <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
+                                <ig:ScatterSeries x:Name="MobileStation" Title="UE1 - iPhone 6S" ItemsSource="{StaticResource MSData}"
                                   XMemberPath="X" YMemberPath="Y"
                                   XAxis="{Binding ElementName=ScatterXAxis}"
                                   YAxis="{Binding ElementName=ScatterYAxis}"
@@ -344,25 +378,25 @@
                                   MarkerOutline="Black"
                                  Legend="{Binding ElementName=Legend1}"
                                  >
-                                <ig:ScatterSeries.LegendItemBadgeTemplate>
-                                    <DataTemplate>
-                                        <Grid Margin="2">
-                                            <Ellipse 
+                                    <ig:ScatterSeries.LegendItemBadgeTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="2">
+                                                <Ellipse 
                                         Width="10" Height="10"
                                         Fill="{Binding ActualItemBrush}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ig:ScatterSeries.LegendItemBadgeTemplate>
-                            </ig:ScatterSeries>
-                        </ig:XamDataChart.Series>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ig:ScatterSeries.LegendItemBadgeTemplate>
+                                </ig:ScatterSeries>
+                            </ig:XamDataChart.Series>
 
-                    </ig:XamDataChart>
+                        </ig:XamDataChart>
                     </TabItem>
 
                     <TabItem Header="Connection Setup">
                         <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.RowSpan="4" Loaded="Image_Loaded"/>
                     </TabItem>
-                    
+
                     <TabItem Header="Channel Model">
                         <Grid>
                             <!--outer grid has two columns; one for data and one for pictures-->
@@ -370,57 +404,57 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0">
-                        <!--inner left grid (data)-->
-                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                             <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <!--inner left grid (data)-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <Label Content="Link ID:" Grid.Column="0" Grid.Row="0"/>
-                              <ComboBox x:Name="ComboLinkID" Grid.Column="1" Grid.Row="0" SelectedIndex="0">
-                                <ComboBoxItem Content="1"/>
-                                <ComboBoxItem Content="2"/>
-                                <ComboBoxItem Content="3"/>
-                                <ComboBoxItem Content="4"/>
-                                <ComboBoxItem Content="5"/>
-                                <ComboBoxItem Content="6"/>
-                                <ComboBoxItem Content="7"/>
-                                <ComboBoxItem Content="8"/>
-                              </ComboBox>
-                            <Label Content="" Grid.Column="0" Grid.Row="1"/>
-                            
-                            <Label Content="Channel Model:" Grid.Column="0" Grid.Row="2"/>
-                            <ComboBox Grid.Column="1" Grid.Row="2" SelectedIndex="0">
-                                <ComboBoxItem Content="SCME"/>
-                            </ComboBox>
-                            <Label Content="Power Angle Spectrum:" Grid.Column="0" Grid.Row="3"/>
-                            <ComboBox Grid.Column="1" Grid.Row="3" SelectedIndex="0">
-                                <ComboBoxItem Content="Laplacian"/>
-                            </ComboBox>
-                            <Label Content="TODO: add more parameters" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4"/>
+                                <Label Content="Link ID:" Grid.Column="0" Grid.Row="0"/>
+                                <ComboBox x:Name="ComboLinkID" Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                                    <ComboBoxItem Content="1"/>
+                                    <ComboBoxItem Content="2"/>
+                                    <ComboBoxItem Content="3"/>
+                                    <ComboBoxItem Content="4"/>
+                                    <ComboBoxItem Content="5"/>
+                                    <ComboBoxItem Content="6"/>
+                                    <ComboBoxItem Content="7"/>
+                                    <ComboBoxItem Content="8"/>
+                                </ComboBox>
+                                <Label Content="" Grid.Column="0" Grid.Row="1"/>
+
+                                <Label Content="Channel Model:" Grid.Column="0" Grid.Row="2"/>
+                                <ComboBox Grid.Column="1" Grid.Row="2" SelectedIndex="0">
+                                    <ComboBoxItem Content="SCME"/>
+                                </ComboBox>
+                                <Label Content="Power Angle Spectrum:" Grid.Column="0" Grid.Row="3"/>
+                                <ComboBox Grid.Column="1" Grid.Row="3" SelectedIndex="0">
+                                    <ComboBoxItem Content="Laplacian"/>
+                                </ComboBox>
+                                <Label Content="TODO: add more parameters" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="4"/>
 
 
-                        </Grid>
+                            </Grid>
                             <Grid Grid.Column="1">
                                 <!--inner right grid (pictures)-->
                                 <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,0,0,0" MaxHeight="200" Loaded="Link_Loaded"/>
