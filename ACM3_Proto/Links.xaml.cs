@@ -19,7 +19,7 @@ namespace ACM3_Proto
     /// </summary>
     public partial class Links : Page
     {
-        const int MaxLinks = 8; // 4 Base Station * 2 Mobile Station
+        const int MaxLinks = 16; // 4 Base Station * 2 Mobile Station * 2 directions (DL/UL for FDD mode)
 
         public Links()
         {
@@ -30,6 +30,7 @@ namespace ACM3_Proto
             System.Windows.Thickness thickness = new Thickness(2, 2, 2, 2);
             Button[] button = new Button[MaxLinks];
             CheckBox[] cb = new CheckBox[MaxLinks];
+            LinkData.LinkDirection direction;
 
             for (int i = 0; i < MaxLinks; i++)
             {
@@ -42,7 +43,12 @@ namespace ACM3_Proto
                 button[i].Click += mainWindow.DisplayChannelModel;
                 button[i].Tag = i;  //this helps identify which button was clicked
 
-                this.LinkDataSource.DataItems.Add(new LinkData(cb[i], i+1, (i % 4)+1, (i % 2)+1, button[i]));
+                if (i % 2 == 0)
+                    direction = LinkData.LinkDirection.DL;
+                else
+                    direction = LinkData.LinkDirection.UL;
+
+                this.LinkDataSource.DataItems.Add(new LinkData(cb[i], i+1, (i % 4)+1, (i % 2)+1, direction, button[i]));
             }
         }
     }

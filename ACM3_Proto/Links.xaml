@@ -6,17 +6,18 @@
         xmlns:local="clr-namespace:ACM3_Proto"
         xmlns:Custom1="http://infragistics.com/DataPresenter"
         mc:Ignorable="d"
-        Title="Links" Height="400">
+        Title="Links">
 
     <Grid Background="Silver">
             <Custom1:XamDataPresenter VerticalAlignment="Top" Name="LinkDataSource" Theme="Royale">
                 <Custom1:XamDataPresenter.FieldLayouts>
                     <Custom1:FieldLayout>
-                        <Custom1:Field Name="Enabled" Width="42"/>
+                        <Custom1:Field Name="Enabled" Label=" " Width="20"/>
                         <Custom1:Field Name="LinkID" Width="50" />
                         <Custom1:Field Name="BSID" Width="50"/>
                         <Custom1:Field Name="MSID" Width="50"/>
-                        <Custom1:Field Name="ChannelModel" Width="100"/>
+                        <Custom1:Field Name="Direction" Width="60"/>
+                        <Custom1:Field Name="ChannelModel" Label="Model" Width="60"/>
                     </Custom1:FieldLayout>
                 </Custom1:XamDataPresenter.FieldLayouts>
                 <Custom1:XamDataPresenter.FieldLayoutSettings>

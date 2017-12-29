@@ -11,19 +11,23 @@ namespace ACM3_Proto
  
     public class LinkData : INotifyPropertyChanged
     {
+        public enum LinkDirection { DL, UL, BI };
+
         CheckBox _enabled;
         int _linkID;
         int _BSID;
         int _MSID;
         Button _button;
- 
-        public LinkData(CheckBox enabled, int linkID, int BSID, int MSID, Button button)
+        LinkDirection _linkDirection;
+
+        public LinkData(CheckBox enabled, int linkID, int BSID, int MSID, LinkDirection linkDirection, Button button)
         {
             this._enabled = enabled;
-            this._linkID = linkID;
+            LinkID = linkID;
             this._BSID = BSID;
             this._MSID = MSID;
             this._button = button;
+            this._linkDirection = linkDirection;
        }
 
         public CheckBox Enabled
@@ -46,6 +50,9 @@ namespace ACM3_Proto
             {
                 if (_linkID != value)
                 {
+                    if (value > 16)
+                        return;
+
                     _linkID = value;
                     OnPropertyChanged("LinkID");
                 }
@@ -75,6 +82,20 @@ namespace ACM3_Proto
                 }
             }
         }
+
+        public LinkDirection Direction
+        {
+            get { return _linkDirection; }
+            set
+            {
+                if (_linkDirection != value)
+                {
+                    _linkDirection = value;
+                    OnPropertyChanged("LinkDirection");
+                }
+            }
+        }
+
         public Button ChannelModel
         {
             get { return _button; }
