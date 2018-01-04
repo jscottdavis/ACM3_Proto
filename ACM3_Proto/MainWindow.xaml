@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ACM3_Proto"
         xmlns:ig="http://schemas.infragistics.com/xaml" xmlns:Custom="http://infragistics.com/Ribbon" xmlns:Custom1="http://infragistics.com/DataPresenter" x:Class="ACM3_Proto.MainWindow"
         mc:Ignorable="d"
-        Title="Spirent Advanced Channel Model Utility" Height="650" Width="1110">
+        Title="Spirent Advanced Channel Model Utility" Height="650" Width="1110" Style="{DynamicResource MainWindowStyle1}" >
 
     <Window.Resources>
         <local:BSDataSource x:Key="MyData"></local:BSDataSource>
@@ -72,6 +72,45 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                <Grid>
+                    <AdornerDecorator>
+                        <ContentPresenter/>
+                    </AdornerDecorator>
+                    <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                        <Condition Property="WindowState" Value="Normal"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="MainWindowStyle1" TargetType="{x:Type Window}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <AdornerDecorator>
+                                <ContentPresenter/>
+                            </AdornerDecorator>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                    <Setter Property="Template" Value="{StaticResource WindowTemplateKey}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <DockPanel>
@@ -105,6 +144,7 @@
             </MenuItem>
         </Menu>
 
+
         <Grid>
             <!--The Main Grid has 3 columns-->
             <Grid.ColumnDefinitions>
@@ -125,38 +165,8 @@
 
                 <Label Content="Parameters" Grid.Column="0" Grid.Row="0" Height="Auto" FontSize="16"/>
                 <TabControl Name="ParametersTab" Grid.Column="0" Grid.Row="1" Background="#FFF9F4F4">
-                    <!--<TabControl.Resources>
-                        <Style TargetType="{x:Type TabItem}">
-                            <Setter Property="BorderThickness" Value="2"/>
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="HeaderTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <Border x:Name="grid" Background="#FFE5E5E5" BorderBrush="Black">
-                                            <ContentPresenter>
-                                                <ContentPresenter.Content>
-                                                    <TextBlock Margin="4" Text="{TemplateBinding Content}"/>
-                                                </ContentPresenter.Content>
-                                            </ContentPresenter>
-                                        </Border>
-                                        <DataTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
-                                                <Setter TargetName="grid" Property="Background" Value="Aqua"/>
-                                            </DataTrigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TabControl.Resources>-->
 
-                    <TabItem Header="Base Stations">
-                        <TabItem.Background>
-                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
-                                <GradientStop Color="#FFF71F1F" Offset="1"/>
-                            </LinearGradientBrush>
-                        </TabItem.Background>
+                    <TabItem Header="Base Stations" Style="{DynamicResource TabItemStyle1}">
                         <ScrollViewer CanContentScroll="True">
                             <Grid Background="#FFE5E5E5">
                                 <Grid.ColumnDefinitions>
@@ -185,7 +195,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Content="ID:" Grid.Column="0" Grid.Row="0"/>
-                                <ComboBox Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                                <ComboBox Background="White" Grid.Column="1" Grid.Row="0" SelectedIndex="0" Style="{DynamicResource ComboBoxStyle1}">
                                     <Label Content="1"/>
                                     <Label Content="2"/>
                                     <Label Content="3"/>
@@ -216,7 +226,7 @@
 
                                 <Label Content="Antenna Parameters" Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2"/>
                                 <TextBlock Text="Antenna Configuration:" Grid.Column="0" Grid.Row="14" TextWrapping="Wrap" Margin="18,0,0,0"/>
-                                <ComboBox Grid.Column="1" Grid.Row="14" SelectedIndex="0">
+                                <ComboBox Grid.Column="1" Grid.Row="14" SelectedIndex="0" Style="{DynamicResource ComboBoxStyle1}">
                                     <Label Content="||"/>
                                     <Label Content="|+"/>
                                     <Label Content="X"/>
@@ -226,7 +236,7 @@
                         </ScrollViewer>
                     </TabItem>
 
-                    <TabItem Header="Mobile Stations">
+                    <TabItem Header="Mobile Stations" Style="{DynamicResource TabItemStyle1}">
                         <Grid Background="#FFE5E5E5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
@@ -253,7 +263,7 @@
                             </Grid.RowDefinitions>
 
                             <Label Content="ID:" Grid.Column="0" Grid.Row="0"/>
-                            <ComboBox Grid.Column="1" Grid.Row="0" SelectedIndex="0">
+                            <ComboBox Grid.Column="1" Grid.Row="0" SelectedIndex="0" Style="{DynamicResource ComboBoxStyle1}">
                                 <Label Content="1"/>
                                 <Label Content="2"/>
                                 <Label Content="3"/>
@@ -266,7 +276,7 @@
 
                             <Label Content="Location" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
                             <Label Content="    Motion Type:" Grid.Column="0" Grid.Row="4"/>
-                            <ComboBox Grid.Column="1" Grid.Row="4" SelectedIndex="1">
+                            <ComboBox Grid.Column="1" Grid.Row="4" SelectedIndex="1" Style="{DynamicResource ComboBoxStyle1}">
                                 <Label Content="No Motion"/>
                                 <Label Content="Circular Motion"/>
                                 <Label Content="Linear Motion"/>
@@ -294,7 +304,7 @@
 
                             <Label Content="Antenna Parameters" Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"/>
                             <TextBlock Text="Antenna Polarization:" Grid.Column="0" Grid.Row="12" TextWrapping="Wrap" Margin="18,0,0,0"/>
-                            <ComboBox Grid.Column="1" Grid.Row="12" SelectedIndex="0">
+                            <ComboBox Grid.Column="1" Grid.Row="12" SelectedIndex="0" Style="{DynamicResource ComboBoxStyle1}">
                                 <Label Content="|| Polarized"/>
                                 <Label Content="X Polarized"/>
                                 <Label Content="+ Polarized"/>
@@ -304,7 +314,7 @@
                         </Grid>
                     </TabItem>
 
-                    <TabItem Header="Links" Background="silver">
+                    <TabItem Header="Links" Background="silver"  Style="{DynamicResource TabItemStyle1}">
                         <Frame VerticalAlignment="Top" Source="Links.xaml" Background="silver"/>
                     </TabItem>
 
@@ -394,7 +404,30 @@
                     </TabItem>
 
                     <TabItem Header="Connection Setup">
-                        <Image HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.RowSpan="4" Loaded="Image_Loaded"/>
+                        <Grid Background="Silver">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+                            <RadioButton Grid.Row="0" Grid.Column="0" Margin="20,20,0,0" Content="Automatic Setup"/>
+                            <RadioButton Grid.Row="0" Grid.Column="1" Margin="0,20,0,0" Content="Manual Setup"/>
+                            <Label Grid.Row="1" Grid.Column="0" Margin="20,10,0,0" Content="Configuration:"/>
+                            <ComboBox Grid.Row="1" Grid.Column="1" Margin="0,10,0,0" SelectedIndex="0" Style="{DynamicResource ComboBoxStyle1}">
+                                <Label Content="8x2 bidirectional FDD"/>
+                                <Label Content="4x2 bidirectional FDD"/>
+                                <Label Content="2x2 TDD"/>
+                            </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Image Loaded="Image_Loaded"/>
+                            </Grid>
+                        </Grid>
                     </TabItem>
 
                     <TabItem Header="Channel Model">
