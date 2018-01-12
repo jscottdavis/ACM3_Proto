@@ -42,7 +42,6 @@ namespace ACM3_Proto
             {
                 case AppMessage.MsgType.ActivateChannelModelTab:
                     this.CenterTab.SelectedIndex = 2;
-                    this.ComboLinkID.SelectedIndex = (int)msg.Param0;
                     break;
             }
             return null;
@@ -68,20 +67,6 @@ namespace ACM3_Proto
             image.Source = b;
         }
 
-        private void Link_Loaded(object sender, RoutedEventArgs e)
-        {
-            // ... Create a new BitmapImage.
-            BitmapImage b = new BitmapImage();
-            b.BeginInit();
-            b.UriSource = new Uri(Environment.CurrentDirectory + "\\link.png");
-            b.EndInit();
-
-            // ... Get Image reference from sender.
-            var image = sender as Image;
-            // ... Assign Source.
-            image.Source = b;
-
-        }
 
         //private void BS_Loaded(object sender, RoutedEventArgs e)
         //{

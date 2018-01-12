@@ -90,18 +90,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppMessage.cs" />
+    <Compile Include="ChannelModel.xaml.cs">
+      <DependentUpon>ChannelModel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InstrumentConfig.xaml.cs">
       <DependentUpon>InstrumentConfig.xaml</DependentUpon>
     </Compile>
     <Compile Include="Links.xaml.cs">
       <DependentUpon>Links.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LogExceptionEventArgs.cs" />
+    <Compile Include="LogMessageEventArgs.cs" />
+    <Compile Include="ShowMessageEventArgs.cs" />
     <Compile Include="SimBuilder.xaml.cs">
       <DependentUpon>SimBuilder.xaml</DependentUpon>
     </Compile>
     <Compile Include="SimPlayer.xaml.cs">
       <DependentUpon>SimPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModelBase.cs" />
     <Page Include="ChannelModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,9 +130,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="BaseStationData.cs" />
-    <Compile Include="ChannelModel.xaml.cs">
-      <DependentUpon>ChannelModel.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LinkData.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
